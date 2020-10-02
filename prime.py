@@ -7,4 +7,5 @@ def prime_numbers(start, stop):
         else:
             print(x)
 
-prime_numbers(30000, 30500)
+if __name__ == "__main__":
+    prime_numbers(30000, 30500)
