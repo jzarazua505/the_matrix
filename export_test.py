@@ -1,3 +1,4 @@
+''' Tests exports '''
 def test_function():
     print("This was printed by another script's function!")
     return "WOW"
