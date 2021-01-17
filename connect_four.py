@@ -14,6 +14,13 @@ def show_board(board):
     Args:
         board: the given 2D list to show
     '''
+    for i in range(len(board)):
+        print(i + 1, end=" ")
+    print()
+    for i in range(len(board)):
+        print("_", end=" ")
+    print()
+    
     # outer loop controls the row, inner the column
     for i in range(len(board[0])):
         for col in board:
@@ -35,13 +42,18 @@ def next_available(column):
             return i - 1
     return i
 
-# def fill_spot(board, column_num, player_sym):
-#     chosen_column = board[column_num]
-#     chosen_spot = last_zero(chosen_column)
-#     if chosen_spot == -1:
-#         return False
-#     chosen_column[chosen_spot] = player_sym
-#     return True
+def choose_valid_spot(board):
+    chosen_row = -1
+    while chosen_row == -1:
+        show_board(board)
+        chosen_column = int(input(f"Where would you like to place your piece, Player {current_player}? (from 1 - 7) ")) - 1
+        if chosen_column not in range(0, len(board)):
+            print("That is not a valid column number! Choose a different one.")
+            continue
+        chosen_row = next_available(board[chosen_column])
+        if chosen_row == -1:
+            print("There are no spots left in that column! Choose a different one.")
+    return chosen_column, chosen_row
 
 def get_symbol(board, position):
     if position[0] not in range(0, len(board)) or position[1] not in range(0, len(board[0])):
@@ -69,25 +81,13 @@ if __name__ == "__main__":
     spots_filled = 0
     current_player = 1
     while True:
-        chosen_row = -1
-        while chosen_row == -1:
-            show_board(board)
-            chosen_column = int(input(f"Where would you like to place your piece, Player {current_player}? (from 0 - 6) "))
-            if chosen_column not in range(0, len(board)):
-                print("That is not a valid column number! Choose a different one.")
-                continue
-            chosen_row = next_available(board[chosen_column])
-            if chosen_row == -1:
-                print("There are no spots left in that column! Choose a different one.")
-
+        chosen_column, chosen_row = choose_valid_spot(board)
         board[chosen_column][chosen_row] = PLAYER_SYMBOLS[current_player]
         if check_for_win(board, (chosen_column, chosen_row)):
             break
-
         spots_filled += 1
         if spots_filled >= len(board) * len(board[0]):
             break
-
         current_player = current_player % 2 + 1
 
     if spots_filled >= len(board) * len(board[0]): 
