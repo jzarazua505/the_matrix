@@ -31,26 +31,27 @@ def last_zero(column):
         -1 if there are no available spots.
     '''
     for i in range(len(column)):
-        if column[i] != 0:
+        if column[i] != "O":
             return i - 1
     return i 
 
 def choose(board, column_num, player_sym):
     chosen_column = board[column_num]
     chosen_spot = last_zero(chosen_column)
+    print(last_zero(chosen_column))
     if chosen_spot == -1:
         return False
     chosen_column[chosen_spot] = player_sym
     return True
 
+if __name__ == "__main__":
+    board = []
+    for x in range(7):
+        board.append(["O", "O", "O", "O", "O", "O"])
 
-board = []
-for x in range(7):
-    board.append(["O", "O", "O", "O", "O", "O"])
-
-while True:
-    spot_chosen = False
-    while not spot_chosen:
-        show_board(board)
-        chosen_column = int(input("Where would you like to place your piece? (from 0 - 6) "))
-        spot_chosen = choose(board, chosen_column, play1_sym)
+    while True:
+        spot_chosen = False
+        while not spot_chosen:
+            show_board(board)
+            chosen_column = int(input("Where would you like to place your piece? (from 0 - 6) "))
+            spot_chosen = choose(board, chosen_column, play1_sym)
