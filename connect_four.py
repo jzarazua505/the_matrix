@@ -35,14 +35,25 @@ def last_zero(column):
             return i - 1
     return i 
 
-def choose(board, column_num, player_sym):
-    chosen_column = board[column_num]
-    chosen_spot = last_zero(chosen_column)
-    print(last_zero(chosen_column))
-    if chosen_spot == -1:
-        return False
-    chosen_column[chosen_spot] = player_sym
-    return True
+def choose_spot(board):
+    ''' prompts user for a spot to place their piece
+
+    Args:
+        board: the current board
+
+    Returns:
+        A tuple containing the chosen column and row
+    '''
+    valid_spot = False
+    while not valid_spot:
+        show_board(board)
+        chosen_column = int(input("Where would you like to place your piece? (from 0 - 6) "))
+    
+        row = last_zero(board[chosen_column])
+        valid_spot = row != -1
+        if not valid_spot:
+            print("That column is full. Pick another column.")
+    return chosen_column, row 
 
 if __name__ == "__main__":
     board = []
@@ -50,8 +61,5 @@ if __name__ == "__main__":
         board.append(["O", "O", "O", "O", "O", "O"])
 
     while True:
-        spot_chosen = False
-        while not spot_chosen:
-            show_board(board)
-            chosen_column = int(input("Where would you like to place your piece? (from 0 - 6) "))
-            spot_chosen = choose(board, chosen_column, play1_sym)
+       column, row = choose_spot(board)
+       board[column][row] = play1_sym
