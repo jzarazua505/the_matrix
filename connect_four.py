@@ -1,6 +1,5 @@
 ''' Plays text based connect four game '''
-play1_sym = "1"
-play2_sym = "2"
+player_symbols = {1: "1", 2: "2"}
 # display board 6 x 7
 # ask users where they want to place on the board
 # verify if ther is a winnner and announce
@@ -60,6 +59,13 @@ if __name__ == "__main__":
     for x in range(7):
         board.append(["O", "O", "O", "O", "O", "O"])
 
+    player_num = 1
     while True:
-       column, row = choose_spot(board)
-       board[column][row] = play1_sym
+        column, row = choose_spot(board)
+        board[column][row] = player_symbols[player_num]
+        if player_num == 1:
+            player_num = 2
+        else:
+            player_num = 1
+    
+        
