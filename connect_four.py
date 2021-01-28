@@ -54,6 +54,40 @@ def choose_spot(board):
             print("That column is full. Pick another column.")
     return chosen_column, row 
 
+def get_horizontal(board, row):
+    horizontal = ""
+    for column in board:
+        horizontal += column[row]
+    return horizontal
+
+def get_up_diagonal(board, column, row):
+    up_diagonal = ""
+    for c in range(len(board)):
+        for r in range(len(board[c])):
+            if column + row == c + r:
+                up_diagonal += board[c][r]
+    return up_diagonal
+    
+def get_down_diagonal(board, columm, row):
+    down_diagonal = ""
+    for c in range(len(board)):
+        for r in range(len(board[c])):
+            if column - row == c - r:
+                down_diagonal += board[c][r]
+    return down_diagonal
+
+def check_win(board, column, row):
+    win_string = board[column][row]*4
+    if win_string in str(board[column]):
+        return True
+    if win_string in get_horizontal(board, row):
+        return True
+    if win_string in get_up_diagonal(board, column, row):
+        return True
+    if win_string in get_down_diagonal(board, column, row):
+        return True
+    return False
+
 if __name__ == "__main__":
     board = []
     for x in range(7):
@@ -63,6 +97,7 @@ if __name__ == "__main__":
     while True:
         column, row = choose_spot(board)
         board[column][row] = player_symbols[player_num]
+        check_win(board, column, row)
         if player_num == 1:
             player_num = 2
         else:
