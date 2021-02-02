@@ -34,11 +34,12 @@ def last_zero(column):
             return i - 1
     return i 
 
-def choose_spot(board):
+def choose_spot(board, player_num):
     ''' prompts user for a spot to place their piece
 
     Args:
         board: the current board
+        player_num: the current player number
 
     Returns:
         A tuple containing the chosen column and row
@@ -46,7 +47,7 @@ def choose_spot(board):
     valid_spot = False
     while not valid_spot:
         show_board(board)
-        chosen_column = int(input("Where would you like to place your piece? (from 0 - 6) "))
+        chosen_column = int(input(f"Where would you like to place your piece, player number {player_num}? (from 0 - 6) "))
     
         row = last_zero(board[chosen_column])
         valid_spot = row != -1
@@ -78,7 +79,7 @@ def get_down_diagonal(board, columm, row):
 
 def check_win(board, column, row):
     win_string = board[column][row]*4
-    if win_string in str(board[column]):
+    if win_string in "".join(board[column]):
         return True
     if win_string in get_horizontal(board, row):
         return True
@@ -94,13 +95,24 @@ if __name__ == "__main__":
         board.append(["O", "O", "O", "O", "O", "O"])
 
     player_num = 1
+    turn = 0
     while True:
-        column, row = choose_spot(board)
+        column, row = choose_spot(board, player_num)
         board[column][row] = player_symbols[player_num]
-        check_win(board, column, row)
+        if check_win(board, column, row):
+            break
+        turn += 1
+        if turn == 42:
+            break
         if player_num == 1:
             player_num = 2
         else:
             player_num = 1
+    if turn == 42:
+        print("The game is a tie -_-")
+    else:
+        print(f"Player number {player_num} wins!")
+    show_board(board)
+
     
         
