@@ -11,5 +11,11 @@ def factorial(input):
         product *= x
     return product
 
+def recursive_factorial(input):
+    if input == 1:
+        return input
+    return input * recursive_factorial(input - 1)
+
+
 fact_sum = factorial(5) + factorial(4) + factorial(2)
 print(fact_sum)
