@@ -4,8 +4,6 @@ def hello(num):
     hello(num - 1)
     print("hello")
 
-# hello(0)
-
 def power(num, exp):
     if exp == 0:
         return 1
@@ -16,5 +14,7 @@ def power(num, exp):
     if exp == 1:
         return num
     return num * power(num, exp - 1)
+
+if __name__ == "__main__":
+    pass
     
-print(power(9, 11))
