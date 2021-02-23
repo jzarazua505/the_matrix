@@ -9,6 +9,9 @@ class Stack:
         items = self.items
         return items.pop(len(items) - 1)
 
+    def peek(self):
+        return self.items[-1]
+
 if __name__ == "__main__":
     pancake = Stack()
     pancake.push("butter")
@@ -16,3 +19,6 @@ if __name__ == "__main__":
     print(pancake.items)
     print(pancake.pop())
     print(pancake.items)
+    print(pancake.peek())
+    print(pancake.items)
+    
