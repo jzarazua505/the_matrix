@@ -1,3 +1,10 @@
+from theater import MovieWatcher, MovieColumn
+
+def row_num(movie_watcher):
+    if movie_watcher.front == None:
+        return 1
+    return row_num(movie_watcher.front) + 1
+
 def hello(num):
     if num == 0:
         return
@@ -16,5 +23,11 @@ def power(num, exp):
     return num * power(num, exp - 1)
 
 if __name__ == "__main__":
-    pass
-    
+    mc = MovieColumn()
+    mc.add_watcher(MovieWatcher())
+    print(mc)
+    mc.add_watcher(MovieWatcher())
+    mc.add_watcher(MovieWatcher())
+    mc.add_watcher(MovieWatcher())
+    print(mc)
+    print(row_num(mc.head))
