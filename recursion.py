@@ -26,8 +26,11 @@ if __name__ == "__main__":
     mc = MovieColumn()
     mc.add_watcher(MovieWatcher())
     print(mc)
-    mc.add_watcher(MovieWatcher())
+    mw = MovieWatcher()
+    mc.add_watcher(mw)
     mc.add_watcher(MovieWatcher())
     mc.add_watcher(MovieWatcher())
     print(mc)
     print(row_num(mc.head))
+    print(row_num(mw))
+    
