@@ -1,0 +1,15 @@
+Eleanor Rigby
+"Baby Your a Rich Man"
+Lucy in the Sky with Diamonds
+
+_ _ _ _   _ _ _ _   _   _ _ _ _   _ _ _
+Letters guessed:
+Mistakes: 0
+What letter? a
+_ a _ _   _ _ _ _   a   _ _ _ _   _ a _
+Letters guessed: a
+Mistakes: 0
+What letter? t
+_ a _ _   _ _ _ _   a   _ _ _ _   _ a _
+Letters guessed: at
+Mistakes: 1
