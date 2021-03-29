@@ -1,6 +1,8 @@
+PUNCT = {" ", "'", "!", "?"}
+
 def show_board(phrase, guesses):
     for c in phrase:
-        if c in guesses or c == " ":
+        if c.lower() in guesses or c in PUNCT:
             print(c, end=" ")
         else:
             print("_", end=" ")
@@ -9,7 +11,7 @@ def show_board(phrase, guesses):
 def show_mistakes(phrase, guesses):
     print("Wrong answers:", end=" ")
     for c in guesses:
-        if c not in phrase:
+        if c not in phrase.lower():
             print(c, end=" ")
     print()
          
@@ -28,13 +30,13 @@ def get_guess(guesses):
 
 def win(phrase, guesses):
     for c in phrase:
-        if c not in guesses and c != " ":
+        if c.lower() not in guesses and c not in PUNCT:
             return False
     return True
 
 if __name__ == "__main__":
     # setup
-    phrase = "flashing lights"
+    phrase = "Can't Tell Me Nothing"
     guesses = set()
     mistakes = 0
     max_mistakes = 6
@@ -53,4 +55,5 @@ if __name__ == "__main__":
     if mistakes == max_mistakes:
         print(f"You lose. The phrase was '{phrase}'.")
     else:
+        show_board(phrase, guesses)
         print("You win")
