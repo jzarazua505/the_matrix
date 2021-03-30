@@ -1,3 +1,5 @@
+from random import choice
+
 PUNCT = {" ", "'", "!", "?"}
 
 def show_board(phrase, guesses):
@@ -36,7 +38,10 @@ def win(phrase, guesses):
 
 if __name__ == "__main__":
     # setup
-    phrase = "Can't Tell Me Nothing"
+    with open("kanye_songs.txt") as s:
+        phrases = s.read().splitlines()
+
+    phrase = choice(phrases)
     guesses = set()
     mistakes = 0
     max_mistakes = 6
